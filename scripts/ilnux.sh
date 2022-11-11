@@ -19,12 +19,12 @@ echo -e "\n${bold}OS : ${end}" && uname -o
 
 echo -e "\n\n===========+===========\n${bold}Checking directories...${end}\n===========+==========="
 echo -e "\n${byellow}/var/www/ ${end}\n=======+=======" && ls -laR --color=auto /var/www/
-echo -e "\n${byellow}/home/${end}\n=======+=======" && ls -la --color=auto /root/ 2>/dev/null || ls -laR --color=auto /home/${USER} 2>/dev/null || echo "Can't access ${USER} home"
+echo -e "\n${byellow}/home/${end}\n=======+=======" && ls -la --color=auto /root/ 2>/dev/null || echo "You are not root :/" && ls -laR --color=auto /home/${USER} 2>/dev/null
 echo -e "\n${byellow}/opt/${end}\n=======+=======" && ls -laR --color=auto /opt
 echo -e "\n${byellow}/tmp/${end}\n=======+=======" && ls -laR --color=auto /tmp 2>/dev/null
 
 echo -e "\n\n===========+===========\n${bold}Checking sudo right${end}\n===========+===========\n"
-sudo -l || echo "No rights found for ${USER}"
+sudo -l || echo "Can't check for ${USER}"
 
 echo -e "\n\n===========+===========\n${bold}Checking binaries w/ root perm${end}\n===========+===========\n"
 find / -user root -perm -4000 -exec ls -ldb {} \; 2>/dev/null

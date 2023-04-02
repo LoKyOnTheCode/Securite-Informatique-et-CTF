@@ -14,6 +14,7 @@ _______________________________ /\
 [URL] winPEAS : https://github.com/carlospolop/PEASS-ng/tree/master/winPEAS/winPEASbat (.bat)
 [URL] netcat for windows : https://eternallybored.org/misc/netcat/netcat-win32-1.11.zip
 [URL] hacker tools : https://addons.mozilla.org/en-US/firefox/addon/hacktools/
+[URL] subdomains.txt : https://raw.githubusercontent.com/danTaler/WordLists/master/Subdomain.txt
 -------------------------------------------------------------------------------------------------------------------------------------------+
 
 [+] => PAYLOADSALLTHETHINGS     - https://github.com/swisskyrepo/PayloadsAllTheThings (reverse shell, etc...)
@@ -33,6 +34,7 @@ _______________________________ /\
 [CMD](ENUM)      => nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse MACHINE_IP  (SAMBA)
                    smbclient //<ip>/anonymous (-U pour un utilisateurs)
                    smbget -R smb://<ip>/anonymous
+[CMD](ENUM)      => ffuf -c -w /usr/share/wordlists/subdomains.txt -u http://domain.com/ -H "Host: FUZZ.domain.com" -fc 301
 [CMD](list)      => msfvenom -l payloads | grep windows | grep reverse | grep shell  (exemple)
 [CMD](decrypt)   => john hash.txt --wordlist=/usr/share/wordlists/rockyou.txt  --format=<format>
 [CMD](sql)       => sqlmap -r file.txt --dbms=mysql --dump | (après avoir copier une requête Burp dans un fichier txt)

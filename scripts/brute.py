@@ -17,3 +17,4 @@ with open(password_list, "r", encoding='latin-1') as file :
                         sys.exit(0)
                       
 ## doit être adapté
+## script très très très basique O:>

@@ -15,6 +15,9 @@ _______________________________ /\
 [URL] netcat for windows : https://eternallybored.org/misc/netcat/netcat-win32-1.11.zip
 [URL] hacker tools : https://addons.mozilla.org/en-US/firefox/addon/hacktools/
 [URL] subdomains.txt : https://raw.githubusercontent.com/danTaler/WordLists/master/Subdomain.txt
+[URL] Reverse Shells : https://www.revshells.com/
+[URL] Bypass authentication : https://book.hacktricks.xyz/pentesting-web/nosql-injection#basic-authentication-bypass
+
 -------------------------------------------------------------------------------------------------------------------------------------------+
 
 [+] => PAYLOADSALLTHETHINGS     - https://github.com/swisskyrepo/PayloadsAllTheThings (reverse shell, etc...)

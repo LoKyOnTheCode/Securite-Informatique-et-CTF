@@ -18,3 +18,4 @@ with open(password_list, "r", encoding='latin-1') as file :
                       
 ## doit être adapté
 ## script très très très basique O:>
+## éventuellement changer le header Content-Type pour : application/json

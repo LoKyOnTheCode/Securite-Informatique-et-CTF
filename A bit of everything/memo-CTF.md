@@ -12,33 +12,33 @@ _______________________________ /\
 ```
 # Énumeration
 
-[ENUM] linPEAS : https://github.com/carlospolop/PEASS-ng/blob/master/linPEAS <br>
-[ENUM] winPEAS : https://github.com/carlospolop/PEASS-ng/tree/master/winPEAS/winPEASbat (.bat) <br>
+linPEAS : https://github.com/carlospolop/PEASS-ng/blob/master/linPEAS <br>
+winPEAS : https://github.com/carlospolop/PEASS-ng/tree/master/winPEAS/winPEASbat (.bat) <br>
 
 # Objectif Reverse shell !
 
-[SHELL] Netcat for windows : https://eternallybored.org/misc/netcat/netcat-win32-1.11.zip <br>
-[SHELL] Hacker tools : https://addons.mozilla.org/en-US/firefox/addon/hacktools/ <br>
-[SHELL] Reverse Shells : https://www.revshells.com/ <br>
-[SHELL] Reverse shell php : https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php <br>
+Netcat for windows : https://eternallybored.org/misc/netcat/netcat-win32-1.11.zip <br>
+Hacker tools : https://addons.mozilla.org/en-US/firefox/addon/hacktools/ <br>
+Reverse Shells : https://www.revshells.com/ <br>
+Reverse shell php : https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php <br>
 
 # Utiles
 
-[MISC] subdomains.txt : https://raw.githubusercontent.com/danTaler/WordLists/master/Subdomain.txt <br>
-[MISC] Bypass authentication : https://book.hacktricks.xyz/pentesting-web/nosql-injection#basic-authentication-bypass <br>
-[MISC] PAYLOADSALLTHETHINGS : https://github.com/swisskyrepo/PayloadsAllTheThings (reverse shell, etc...) <br>
-[MISC] Binaries exploit : https://gtfobins.github.io/ <br>
-[MISC] PrivEscCheck (windows) : https://github.com/itm4n/PrivescCheck <br>
+subdomains.txt : https://raw.githubusercontent.com/danTaler/WordLists/master/Subdomain.txt <br>
+Bypass authentication : https://book.hacktricks.xyz/pentesting-web/nosql-injection#basic-authentication-bypass <br>
+PAYLOADSALLTHETHINGS : https://github.com/swisskyrepo/PayloadsAllTheThings (reverse shell, etc...) <br>
+Binaries exploit : https://gtfobins.github.io/ <br>
+PrivEscCheck (windows) : https://github.com/itm4n/PrivescCheck <br>
 ```
 PS C:\> Set-ExecutionPolicy Bypass -Scope process -Force
 PS C:\> . .\PrivescCheck.ps1
 PS C:\> Invoke-PrivescCheck
 ```
-[MISC] wes.py : https://github.com/bitsadmin/wesng/blob/master/wes.py <br>
+wes.py (aussi pour windows): https://github.com/bitsadmin/wesng/blob/master/wes.py <br>
 ```
 user@kali$ wes.py systeminfo.txt        
 ```
-[MISC] Windows Local PrivEsc : https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation
+Windows Local PrivEsc : https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation
 
 -------------------------------------------------------------------------------------------------------------------------------------------+
 # Basiques !

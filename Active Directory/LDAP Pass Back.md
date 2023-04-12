@@ -41,3 +41,44 @@ olcSaslSecProps: noanonymous,minssf=0,passcred
   <li>minssf: Specifies the minimum acceptable security strength with 0, meaning no protection. <br>
 </ul>
 
+
+
+# Patch LDAP Server
+
+```
+sudo ldapmodify -Y EXTERNAL -H ldapi:// -f ./olcSaslSecProps.ldif && sudo service slapd restart
+```
+Check new config :
+```
+┌──(root㉿kali)-[~]
+└─# ldapsearch -H ldap:// -x -LLL -s base -b "" supportedSASLMechanisms
+dn:
+supportedSASLMechanisms: PLAIN
+supportedSASLMechanisms: LOGIN
+
+```
+
+
+# Capturing LDAP Creds (TryHackMe example with printer.za.tryhackme.com)
+
+Changing server to the tun0 ip address : 10.50.26.19 
+Then click save
+
+![image](https://user-images.githubusercontent.com/97956863/231569418-d86a2329-a712-4f07-96b9-add6f33a74a6.png)
+
+Before clicking Test on kali :
+
+```
+sudo tcpdump -SX -i breachad tcp port 389
+
+```
+
+Click Test !!
+
+![image](https://user-images.githubusercontent.com/97956863/231570152-26fc6cd4-773d-4e18-b4b7-42516d716de7.png)
+
+
+As we can see the password in the middle of the screen : tryhackmeldappass1@
+
+
+Credit : TryHackMe

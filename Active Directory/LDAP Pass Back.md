@@ -78,7 +78,9 @@ Click Test !!
 ![image](https://user-images.githubusercontent.com/97956863/231570152-26fc6cd4-773d-4e18-b4b7-42516d716de7.png)
 
 
-As we can see the password in the middle of the screen : tryhackmeldappass1@
+As we can see the password at the bottom of the screen : tryhackmeldappass1@
 
+<br>
+<br>
 
 Credit : TryHackMe

@@ -13,6 +13,7 @@ _______________________________ /\
 # Énumeration
 
 linPEAS : https://github.com/carlospolop/PEASS-ng/blob/master/linPEAS <br>
+linEnum : https://github.com/rebootuser/LinEnum <br>
 winPEAS : https://github.com/carlospolop/PEASS-ng/tree/master/winPEAS/winPEASbat (.bat) <br>
 
 # Objectif Reverse shell !

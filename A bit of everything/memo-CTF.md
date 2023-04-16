@@ -1,4 +1,3 @@
-<img src=x onerror=alert('hello')>
 ```
 ===========================================
 
@@ -104,5 +103,12 @@ type C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config | findstr
 reg query HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\ /f "Proxy" /s
 #Il est important de garder SimonTatham car c'est le créateur de PuTTY ! 
 ```
+# Some XSS Cheats
+```
+<script>document.querySelector('#page-title').textContent = 'New text'</script>
+<img src=x onerror=alert('hello')>
+```
+
+
 -------------------------------------------------------------------------------------------------------------------------------------------+
 

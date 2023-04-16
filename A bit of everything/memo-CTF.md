@@ -66,6 +66,11 @@ Windows Local PrivEsc : https://book.hacktricks.xyz/windows-hardening/windows-lo
 [CMD](sql)       => sqlmap -r file.txt --dbms=mysql --dump | (après avoir copier une requête Burp dans un fichier txt)
 [CMD](ftp)       => wget -m --no-passive ftp://anonymous:anonymous@<IP>  (download tout)
 ```
+<br>
+[?] Using "-p" on an SUID file will run it with the permission of the owner. Ex if root own a file and you run it (non-root) using "-p" you will run it with root perm
+<br> 
+<br>
+
 # Windows
 
 ```
@@ -99,5 +104,4 @@ reg query HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\ /f "Proxy" /s
 #Il est important de garder SimonTatham car c'est le créateur de PuTTY ! 
 ```
 -------------------------------------------------------------------------------------------------------------------------------------------+
-<br>
-[?] Using "-p" on an SUID file will run it with the permission of the owner. Ex if root own a file and you run it (non-root) using "-p" you will run it with root perm
+

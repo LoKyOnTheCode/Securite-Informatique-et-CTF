@@ -19,3 +19,9 @@ with open(password_list, "r", encoding='latin-1') as file :
 ## doit être adapté
 ## script très très très basique O:>
 ## éventuellement changer le header Content-Type pour : application/json
+
+
+## si besoin d'utiliser une liste de mots par le bas : 
+## ┌──(root㉿kali)-[~]
+## └─# tac <my_wordlist> > <new_wordlist> 
+## de la sorte <new_wordlist> est l'inverse de <my_wordlist>

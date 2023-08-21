@@ -66,6 +66,7 @@ reg query HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\ /f "Proxy" /s
 # Autres Techniques
 
 ### Planificateur de tâches
+Pour lister les tâches planifiées : `schtasks` 
 
 ```
 schtasks /query /tn vulntask /fo list /v

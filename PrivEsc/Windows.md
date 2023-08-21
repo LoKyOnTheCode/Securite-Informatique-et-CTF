@@ -52,7 +52,8 @@ web.config
 ```
 C:\inetpub\wwwroot\web.config
 C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config
-
+```
+```
 type C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config | findstr connectionString
 ```
 

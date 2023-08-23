@@ -51,3 +51,24 @@ si utilisation de winrm, sur le GUI taper [PowerShell]
 Set-PSSessionConfiguration -Name Microsoft.PowerShell -showSecurityDescriptorUI
 ```
 Y ajouter l'utilisateur
+
+## RID Hijacking
+Check des utilisateurs avec leur RID
+```
+wmic useraccount get name,sid
+```
+```
+PsExec64.exe -i -s regedit
+```
+
+Sous `HKLM\SAM\SAM\Domains\Account\Users\`, chercher la valeur hexadécimal qui correspond au RID de l'utilisateur souhaité. Tool en ligne pour convertir les RID en hexadécimal <a href="https://www.to-convert.com/fr/nombre/convertir-decimal-en-hexadecimal.php">ici</a>.
+<br>
+UNe fois qu'on a trouvé la valeur qui correspond à notre utilisateur, on ouvre le dossier pour éditer la valeur de `F` à la ligne 0030 (correspond au RID en little-endian c'est-à-dire <strong>inversé</strong>)
+
+![image](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/assets/97956863/82e4b1fa-a8ed-43fe-ae39-84cc08a64fff)
+<br>
+On va cherché à lui donner la valeur de celui de l'administrateur à savoir RID=500 donc `01F4` (`F401` en little-endian)! 
+
+![image](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/assets/97956863/bdeef6ac-10eb-479e-9173-98dbc9efaa4f)
+
+La prochaine fois que le user se connectera LSASS associera à celui-ci, le même RID que l'administrateur !

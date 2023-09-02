@@ -98,6 +98,7 @@ chmod +s privEsc
 ```
 <br>
 <br>
+
 ## Sudo - Environment Variables
 
 Quand `sudo -l` si LD_PRELOAD ou LD_LIBRARY_PATH, qui sont des librairies partagées, il est possible de faire un PrivEsc avec 

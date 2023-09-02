@@ -123,6 +123,8 @@ void _init() {
 }
 
 ```
+<br>
+<br>
 
 ### Apache2 & LD_LIBRARY_PATH
 
@@ -160,6 +162,7 @@ void hijack() {
 
 <br>
 <br>
+
 ## Cron Jobs - PATH Environment Variable
 
 Exemple

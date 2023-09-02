@@ -37,6 +37,15 @@ steghide extract -sf image.jpg
 
 <br>
 
+## WPSCAN
+
+```
+wpscan --url 10.10.188.11 -U kwheel -P /usr/share/wordlists/rockyou.txt
+```
+Fonctionne aussi avec une liste de user pour l'option `-U`
+
+<br>
+
 ## 7z Deziper avec password
 
 ```

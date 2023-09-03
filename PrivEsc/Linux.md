@@ -5,7 +5,12 @@ Des techniques pour de la PrivEsc sur linux !
 - [Commande find](#Commande-find)
 - [LD_PRELOAD](#ld_preload)
 - [NFS](#NFS)
-- [Sudo - Environment Variables](#Sudo-Environment-Variables)
+- [Environment Variables](#Environment-Variables)
+- [Apache2 & LD_LIBRARY_PATH](#Apache2-&-LD_LIBRARY_PATH)
+- [Cron Jobs PATH Environment Variable](#Cron-Jobs-PATH-Environment-Variable)
+- [Cron Jobs Wildcard](#Cron-Jobs-Wildcard)
+- [Executables Shared Object Injection](#Executables-Shared-Object-Injection)
+- [Executables - Environment Variables ](#Executables--Environment-Variables)
 
 ## Commande find
 
@@ -104,7 +109,7 @@ chmod +s privEsc
 <br>
 <br>
 
-## Sudo - Environment Variables
+## Environment Variables
 
 Quand `sudo -l` si LD_PRELOAD ou LD_LIBRARY_PATH, qui sont des librairies partagées, il est possible de faire un PrivEsc avec 
 
@@ -131,7 +136,7 @@ void _init() {
 <br>
 <br>
 
-### Apache2 & LD_LIBRARY_PATH
+## Apache2 & LD_LIBRARY_PATH
 
 Pour savoir quelles librairies sont utilisées avec apache2
 
@@ -168,7 +173,7 @@ void hijack() {
 <br>
 <br>
 
-## Cron Jobs - PATH Environment Variable
+## Cron Jobs PATH Environment Variable
 
 Exemple
 ```
@@ -211,7 +216,7 @@ puis
 <br>
 <br>
 
-## Cron Jobs - Wildcard
+## Cron Jobs Wildcard
 
 Cas de `tar` (Cf. Crontab au dessus)
 
@@ -245,7 +250,7 @@ nc -lnvp 1337
 <br>
 <br>
 
-## SUID / SGID Executables - Shared Object Injection
+## Executables Shared Object Injection
 
 Utiliser stracer pour voir les appels au objet partagé !
 
@@ -255,7 +260,7 @@ strace /usr/local/bin/suid-so 2>&1 | grep -iE "open|access|no such file"
 <br>
 <br>
 
-## SUID / SGID Executables - Environment Variables 
+## Executables - Environment Variables 
 
 Exemple
 

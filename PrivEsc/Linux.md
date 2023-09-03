@@ -6,7 +6,7 @@ Des techniques pour de la PrivEsc sur linux !
 - [LD_PRELOAD](#ld_preload)
 - [NFS](#NFS)
 - [Environment Variables](#Environment-Variables)
-- [Apache2 & LD_LIBRARY_PATH]('#Apache2-&-LD_LIBRARY_PATH')
+- [Apache2 & LD_LIBRARY_PATH](#Apache2--LD_LIBRARY_PATH)
 - [Cron Jobs - PATH Environment Variable](#Cron-Jobs---PATH-Environment-Variable)
 - [Cron Jobs - Wildcard](#Cron-Jobs---Wildcard)
 - [Executables - Shared Object Injection](#Executables---Shared-Object-Injection)
@@ -138,7 +138,7 @@ void _init() {
 <br>
 <br>
 
-## Apache2 & LD_LIBRARY_PATH
+## Apache2  LD_LIBRARY_PATH
 
 Pour savoir quelles librairies sont utilisées avec apache2
 

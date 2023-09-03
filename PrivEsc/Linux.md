@@ -11,8 +11,8 @@ Des techniques pour de la PrivEsc sur linux !
 - [Cron Jobs - Wildcard](#Cron-Jobs---Wildcard)
 - [Executables - Shared Object Injection](#Executables---Shared-Object-Injection)
 - [Executables - Environment Variables ](#Executables---Environment-Variables)
-- [Executables - Abusing Shell Features (#1)](#Executables---Abusing-Shell-Features-(#1))
-- [Executables - Abusing Shell Features (#2)](#Executables---Abusing-Shell-Features-(#2))
+- [Executables - Abusing Shell Features (#1)](#Executables---Abusing-Shell-Features-(\#1))
+- [Executables - Abusing Shell Features (#2)](#Executables---Abusing-Shell-Features-(\#2))
 
 ## Commande find
 

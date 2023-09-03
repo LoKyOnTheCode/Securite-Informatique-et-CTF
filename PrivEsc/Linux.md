@@ -4,6 +4,8 @@ Des techniques pour de la PrivEsc sur linux !
 
 - [Commande find](#Commande-find)
 - [LD_PRELOAD](#ld_preload)
+- [NFS](#NFS)
+- [Sudo - Environment Variables](#Sudo-Environment-Variables)
 
 ## Commande find
 

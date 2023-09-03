@@ -3,6 +3,7 @@
 Des techniques pour de la PrivEsc sur linux !
 
 - [Commande find](#Commande-find)
+- [LD_PRELOAD](#ld_preload)
 
 ## Commande find
 

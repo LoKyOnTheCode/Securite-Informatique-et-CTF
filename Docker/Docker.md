@@ -29,3 +29,13 @@ http://IP:PORT/v2/repository/name/manifests/tag-name
 
 ![image](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/assets/97956863/b0f2b6ad-8665-41e7-9078-fd695eb4f32a)
 
+<br>
+<br>
+
+# Dive
+
+Installatoin <a href="https://github.com/wagoodman/dive#installation">ici</a>
+
+```
+dive <image_id>
+```

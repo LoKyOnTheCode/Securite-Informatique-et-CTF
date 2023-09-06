@@ -94,8 +94,8 @@ Windows Local PrivEsc : https://book.hacktricks.xyz/windows-hardening/windows-lo
 ```
 ========================= OBTENIR LES INFOS SUR LES AV INSTALLE =============================
 
-*CMD*  => wmic /namespace:\\root\securitycenter2 path antivirusproduct
-*PS*   => Get-CimInstance -Namespace root/SecurityCenter2 -ClassName AntivirusProduct
+*CMD* & *PS*  => wmic /namespace:\\root\securitycenter2 path antivirusproduct
+*PS*          => Get-CimInstance -Namespace root/SecurityCenter2 -ClassName AntivirusProduct
 
 =============================================================================================
 

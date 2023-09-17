@@ -42,7 +42,7 @@ user@kali$ wes.py systeminfo.txt
 Windows Local PrivEsc : https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation
 
 -------------------------------------------------------------------------------------------------------------------------------------------+
-# Basiques !
+# Basiques
 ```
 [+] => INFO GATHERING           - sudo -l
 [+] => SPAWN SHELL USING BASH   - bash -i

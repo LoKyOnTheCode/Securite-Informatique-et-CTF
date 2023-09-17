@@ -1,8 +1,18 @@
 - [Active Directory](#Active-Directory)
   - [Kerbrute](#Kerbrute)
-  - [GetNPUUsers.py](#GetNPUUsers.py-(Impacket))
-  - [Secretsdump.py](#Secretsdump.py-(Impacket))
-- [Binwalk](#Binwalk-(data-extraction))
+  - [GetNPUUsers.py](#GetNPUUsers.py)
+  - [Secretsdump.py](#Secretsdump.py)
+- [Binwalk](#Binwalk)
+- [Chisel](#Chisel)
+- [Hydra](#Hydra)
+  - [WEB](#WEB)
+  - [SSH](#SSH)
+  - [FTP](#FTP)   
+- [JohnTheRipper](#JohnTheRipper)
+- [Steghide](#Steghide)
+- [WPSCAN](#WPSCAN)
+- [7z Deziper avec password](#7z-Deziper-avec-password)
+
 
 ## Active Directory
 
@@ -10,11 +20,11 @@
 ```
 kerbute userenum --dc 10.10.117.125 -d spookysec.local user_list.txt
 ```
-### GetNPUsers.py (Impacket)
+### GetNPUsers.py
 ```
 python /opt/impacket/examples/GetNPUsers.py -no-pass -usersfile user.txt -dc-ip 10.10.117.125 spookysec.local/
 ```
-### Secretsdump.py (Impacket)
+### Secretsdump.py
 ```
 python3 /opt/impacket/examples/secretsdump.py -just-dc <user>@10.10.117.125
 ```
@@ -22,7 +32,7 @@ python3 /opt/impacket/examples/secretsdump.py -just-dc <user>@10.10.117.125
 <br>
 <br>
 
-## Binwalk (data extraction)
+## Binwalk
 
 ```
 binwalk <image> -e
@@ -56,16 +66,22 @@ hydra -l <user> -P /usr/share/wordlists/rockyou.txt ftp://<ip>
 ```
 <br>
 
-## JohnTheRipper (hash zipfile)
+## JohnTheRipper
 
 ```
 zip2john file.zip > zip.hash 
 john file.zip zip.hash
 
 ```
+```
+zip2john
+ssh2john
+rar2john
+```
+
 <br>
 
-## steghide
+## Steghide
 
 ```
 steghide extract -sf image.jpg

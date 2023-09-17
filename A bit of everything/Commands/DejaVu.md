@@ -22,6 +22,18 @@ python3 /opt/impacket/examples/secretsdump.py -just-dc <user>@10.10.117.125
 binwalk <image> -e
 ```
 <br>
+<br>
+
+## Chisel
+
+```
+chisel server -p 8001 --reverse
+```
+```
+./chisel_amd64 client 10.50.111.37:8001 R:socks &
+```
+<br>
+<br>
 
 ## Hydra
 ### WEB

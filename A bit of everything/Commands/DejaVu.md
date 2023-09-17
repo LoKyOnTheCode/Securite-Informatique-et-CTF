@@ -1,5 +1,8 @@
 - [Active Directory](#Active-Directory)
   - [Kerbrute](#Kerbrute)
+  - [GetNPUUsers.py](#GetNPUUsers.py)
+  - [Secretsdump.py](#Secretsdump.py)
+- [Binwalk](#Binwalk)
 
 ## Active Directory
 

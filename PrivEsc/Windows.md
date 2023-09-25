@@ -10,6 +10,12 @@
     - [Exécution manuelle](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/blob/main/PrivEsc/Windows.md#ex%C3%A9cution-manuelle-)
 - [AlwaysInstallElevated](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/blob/main/PrivEsc/Windows.md#alwaysinstallelevated-)
 - [Insecure Permissions on Service Executable](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/blob/main/PrivEsc/Windows.md#insecure-permissions-on-service-executable-)
+- [Unquoted Service Paths](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/blob/main/PrivEsc/Windows.md#unquoted-service-paths-%EF%B8%8F%E2%83%A3)
+- [Insecure Service Permissions ](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/blob/main/PrivEsc/Windows.md#insecure-service-permissions-)
+- [Si compte avec privilège](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/blob/main/PrivEsc/Windows.md#si-compte-avec-privil%C3%A8ge)
+- [SeBackup / SeRestore](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/blob/main/PrivEsc/Windows.md#sebackup--serestore-)
+- [TakeOwnership](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/blob/main/PrivEsc/Windows.md#takeownership-)
+- [RogueWinRM](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/blob/main/PrivEsc/Windows.md#roguewinrm-)
 
 Quelques sources possibles d'escalation de privilèges sous windows
 

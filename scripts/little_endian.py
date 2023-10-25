@@ -1,3 +1,5 @@
+## pip install pyperclip
+
 import sys
 import os
 

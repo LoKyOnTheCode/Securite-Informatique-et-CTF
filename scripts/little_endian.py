@@ -1,10 +1,15 @@
 ## pip install pyperclip
+## Simple script, written to quickly get your little endian adress !
+## python little_endian.py 08945156 copy 
+## \x56\x51\x94\x08
+## Copied to your clipboard ;) 
+## Just paste it !!
 
 import sys
 import os
 
 if len(sys.argv) < 2:
-        print('Usage : python little.py <adress_to_convert> [copy | ]')
+        print('Usage : python little_endian.py <adress_to_convert> [copy | ]')
         sys.exit(1)
 else:
         chars = sys.argv[1]

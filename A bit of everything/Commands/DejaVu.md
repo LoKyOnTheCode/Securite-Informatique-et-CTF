@@ -3,6 +3,7 @@
   - [GetNPUUsers.py](#GetNPUUsers.py)
   - [Secretsdump.py](#Secretsdump.py)
 - [Binwalk](#Binwalk)
+- [Certutils](#Certutils)
 - [Chisel](#Chisel) 
 - [Hydra](#Hydra)
   - [WEB](#WEB)
@@ -36,6 +37,14 @@ python3 /opt/impacket/examples/secretsdump.py -just-dc <user>@10.10.117.125
 
 ```
 binwalk <image> -e
+```
+<br>
+<br>
+
+## Certutils
+
+```
+certutil -encode payload.exe Encoded-payload.txt
 ```
 <br>
 <br>
